@@ -207,7 +207,7 @@ _run_setup:
 	@echo "$(YELLOW)Starting backend server...$(RESET)"
 	@poetry run uvicorn openhands.server.listen:app --host $(BACKEND_HOST) --port $(BACKEND_PORT) &
 	@echo "$(YELLOW)Waiting for the backend to start...$(RESET)"
-	@until nc -z localhost $(BACKEND_PORT); do sleep 0.1; done
+	@until nc -z localhost $(BACKEND_PORT) 2>/dev/null; do sleep 0.1; done
 	@echo "$(GREEN)Backend started successfully.$(RESET)"
 
 # Run the app (standard mode)
